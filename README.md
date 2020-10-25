@@ -27,7 +27,15 @@ This project is written with [VSCode](https://code.visualstudio.com/) in mind. s
 
 `npm run test`
 
-execute all internal tests.
+runst code checks and then execute internal tests.
+
+`npm run test:quick`
+
+only executes internal tests.
+
+`npm run test:quick -- --watch` 
+
+run tests in watch mode.
 
 ### clean
 
