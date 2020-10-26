@@ -20,7 +20,7 @@
         "pretest": "npm run typecheck && npm run lint",
         "clean": "rimraf ./dist/",
         "prebuild": "npm run clean",
-        "build": "tsc --skipLibCheck -p ./tsconfig.prod.json && docker build -t my_name/typescript-service-template .",
+        "build": "tsc --skipLibCheck -p ./tsconfig.prod.json && docker build -t local/typescript-service-template .",
         "test": "ava --verbose --timeout=10m --serial",
         "test:quick": "echo '-- TEST --' && ava --verbose --timeout=10m --serial",
         "test:e2e": "ava --verbose --timeout=10m --serial --config ./ava.config.e2e.js",
@@ -38,7 +38,7 @@
         "@types/node-fetch": "^2.5.4",
         "@typescript-eslint/eslint-plugin": "^2.19.2",
         "@typescript-eslint/parser": "^2.19.2",
-        "ava": "^3.3.0",
+        "ava": "^3.13.0",
         "docker-compose-mocha": "^1.2.0",
         "eslint": "^7.9.0",
         "eslint-config-prettier": "^6.11.0",
@@ -52,5 +52,7 @@
         "ts-retry-promise": "^0.2.0",
         "typescript": "~3.7.5"
     },
-    "dependencies": {}
+    "dependencies": {
+        "env-var": "^6.3.0"
+    }
 }

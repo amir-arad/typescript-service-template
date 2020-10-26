@@ -1,3 +1,6 @@
 import { serve } from '.';
+import * as env from 'env-var';
 
-serve(80);
+const PORT: number = env.get('PORT').required().asIntPositive();
+
+serve(PORT);

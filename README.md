@@ -7,7 +7,6 @@ A typescript service that works with docker and shit
 ### Cloning this template
 
 duplicate this repo
-replace `my_name/typescript-service-template` with the name of the docker image you want to generate
 replace `typescript-service-template` with the name of the service you want to create
 
 ### Installing workspace

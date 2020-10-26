@@ -21,24 +21,20 @@
         {
             "type": "node",
             "request": "launch",
-            "cwd": "${workspaceRoot}",
             "name": "Debug AVA test file",
-            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ava",
-            "runtimeArgs": ["debug", "--break", "${file}"],
-            "port": 9229,
+            "program": "${workspaceFolder}/node_modules/.bin/ava",
+            "args": ["debug", "${file}"],
             "outputCapture": "std",
-            "skipFiles": ["<node_internals>/**/*.js"]
+            "skipFiles": ["<node_internals>/**"]
         },
         {
             "type": "node",
             "request": "launch",
-            "cwd": "${workspaceRoot}",
             "name": "Debug E2E AVA test file",
-            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ava",
-            "runtimeArgs": ["--config", "./ava.config.e2e.js", "debug", "--break", "${file}"],
-            "port": 9229,
+            "program": "${workspaceFolder}/node_modules/.bin/ava",
+            "args": ["debug", "--config", "./ava.config.e2e.js", "${file}"],
             "outputCapture": "std",
-            "skipFiles": ["<node_internals>/**/*.js"]
+            "skipFiles": ["<node_internals>/**"]
         }
     ]
 }
