@@ -10,7 +10,7 @@
             "name": "main.ts",
             "skipFiles": ["<node_internals>/**"],
             "args": ["${workspaceFolder}/src/main.ts"],
-            "runtimeArgs": ["-r", "ts-node/register/transpile-only"],
+            "runtimeArgs": ["-r", "dotenv/config", "-r", "ts-node/register/transpile-only"],
             "cwd": "${workspaceRoot}",
             "protocol": "inspector",
             "internalConsoleOptions": "openOnSessionStart",

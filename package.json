@@ -26,7 +26,7 @@
         "test:e2e": "ava --verbose --timeout=10m --serial --config ./ava.config.e2e.js",
         "prepack": "npm run build",
         "prettify": "prettier \"src/**/*.ts\" --write && prettier \"e2e/**/*.ts\" --write",
-        "start": "node ./dist/main.js"
+        "start": "node --require dotenv/config ./dist/main.js"
     },
     "husky": {
         "hooks": {
@@ -53,6 +53,7 @@
         "typescript": "~3.7.5"
     },
     "dependencies": {
+        "dotenv": "^8.2.0",
         "env-var": "^6.3.0"
     }
 }

@@ -12,7 +12,9 @@ replace `typescript-service-template` with the name of the service you want to c
 ### Installing workspace
 
 to install a development environment, you need to have nvm and git installd.
-Then, `git clone` this repo locally and run:
+Then, `git clone` this repo locally.
+copy `.env.sample` into `.env` so that you have an initial configuration.
+run:
 ```
 $ nvm use
 $ npm install
