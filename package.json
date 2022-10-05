@@ -24,7 +24,7 @@
         "build": "tsc --skipLibCheck -p ./tsconfig.prod.json && docker build -t local/typescript-service-template .",
         "test": "npm run test:quick",
         "test:quick": "echo '-- TEST --' && jest",
-        "test:e2e": "echo '-- E2E TEST --' && jest --config=./jest.e2e.config.js",
+        "test:e2e": "npm run build && echo '-- E2E TEST --' && jest --config=./jest.e2e.config.js",
         "prepack": "npm run build",
         "pretty-quick": "pretty-quick --staged --pattern \"./modules/*/src/**/*.{ts,tsx,json}\"",
         "prettier": "prettier --ignore-path .eslintignore -c **/*.{js,ts,jsx,tsx}",
