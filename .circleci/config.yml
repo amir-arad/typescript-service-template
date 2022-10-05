@@ -17,7 +17,6 @@ workflows:
                     - setup_remote_docker
                     - run: docker --version
                     - run: docker pull appropriate/curl
-                    - run: npm run build
                 run-command: 'test:e2e'
                 test-results-for: jest
                 cache-version: default
