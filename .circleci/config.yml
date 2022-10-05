@@ -40,19 +40,19 @@ workflows:
     test:
         jobs:
             - node/test:
-                  name: 'Test'
-                  version: '18.3.0'
-                  test-results-for: jest
-                  cache-version: default
+                name: 'Test'
+                version: '18.3.0'
+                test-results-for: jest
+                cache-version: default
             - node/test:
-                  name: 'Test-E2E'
-                  version: '18.3.0'
-                  setup: 
-                    - docker --version
+                name: 'Test-E2E'
+                version: '18.3.0'
+                setup: 
                     - setup_remote_docker
+                    - docker --version
                     - docker pull appropriate/curl
                     - npm run build
-                  run-command: 'test:e2e'
-                  test-results-for: jest
-                  cache-version: default
+                run-command: 'test:e2e'
+                test-results-for: jest
+                cache-version: default
             - Test-Static
