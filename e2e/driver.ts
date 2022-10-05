@@ -1,9 +1,12 @@
-import test from 'ava';
-import { exec as cb_exec } from 'child_process';
+import '../custom_typings/docker-compose-mocha/index.d';
+
 import { dockerComposeTool, getAddressForService } from 'docker-compose-mocha';
+
+import { exec as cb_exec } from 'child_process';
 import fetch from 'node-fetch';
-import { retry } from 'ts-retry-promise';
 import { promisify } from 'util';
+import { retry } from 'ts-retry-promise';
+
 const exec = promisify(cb_exec);
 
 export class TestEnvironment {
@@ -11,14 +14,9 @@ export class TestEnvironment {
     constructor(private pathToCompose: string) {}
 
     init() {
-        this.envName = dockerComposeTool(
-            test.serial.before.bind(test.serial),
-            test.serial.after.always.bind(test.serial.after),
-            this.pathToCompose,
-            {
-                shouldPullImages: false,
-            }
-        );
+        this.envName = dockerComposeTool(beforeEach, afterEach, this.pathToCompose, {
+            shouldPullImages: false,
+        });
     }
 
     async fetch(serviceName: string, port: number = 7001, path: string = '/') {
