@@ -12,29 +12,67 @@
             "args": ["${workspaceFolder}/src/main.ts"],
             "runtimeArgs": ["-r", "dotenv/config", "-r", "ts-node/register/transpile-only"],
             "cwd": "${workspaceRoot}",
-            "protocol": "inspector",
-            "internalConsoleOptions": "openOnSessionStart",
-            "env": {
-                "TS_NODE_IGNORE": "false"
-            }
+            "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug AVA test file",
-            "program": "${workspaceFolder}/node_modules/.bin/ava",
-            "args": ["debug", "${file}"],
-            "outputCapture": "std",
+            "name": "test all",
+            "program": "${workspaceFolder}/node_modules/jest/.bin/jest",
+            "windows": {
+                "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+            },
+            "args": ["--runInBand"],
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
             "skipFiles": ["<node_internals>/**"]
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug E2E AVA test file",
-            "program": "${workspaceFolder}/node_modules/.bin/ava",
-            "args": ["debug", "--config", "./ava.config.e2e.js", "${file}"],
-            "outputCapture": "std",
+            "name": "Test current file",
+            "program": "${workspaceFolder}/node_modules/jest/.bin/jest",
+            "windows": {
+                "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+            },
+            "args": ["${fileBasename}", "--testTimeout=100000000"],
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
             "skipFiles": ["<node_internals>/**"]
-        }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test watch current file",
+            "program": "${workspaceFolder}/node_modules/jest/.bin/jest",
+            "windows": {
+                "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+            },
+            "args": ["${fileBasename}", "--verbose", "-i", "--no-cache", "--watchAll", "--testTimeout=100000000"],
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "debug e2e test",
+            "program": "${workspaceFolder}/node_modules/jest/.bin/jest",
+            "windows": {
+                "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+            },
+            "args": ["${fileBasename}", "--testTimeout=100000000", "--config=./jest.e2e.config.js"],
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "skipFiles": ["<node_internals>/**"]
+        },
     ]
 }
