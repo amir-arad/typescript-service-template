@@ -1,41 +1,7 @@
 version: 2.1
 orbs:
     node: circleci/node@5.0.2
-jobs:
-    Test-Static:
-        executor:
-            name: node/default
-            tag: '18.3'
-        steps:
-            - checkout
-            - run: node --version
-            - run: npm --version
-            - run: env
-            - node/install-packages:
-                  cache-version: default
-            - run: npm run test:types
-            - run: npm run test:format
-    Test-E2e:
-        executor:
-            name: node/default
-            tag: '18.3'
-        steps:
-            - setup_remote_docker
-            - checkout
-            - run: mkdir -p ./test-results
-            - run: node --version
-            - run: npm --version
-            - run: docker --version
-            - run: env
-            - run: docker pull appropriate/curl
-            - node/install-packages:
-                  cache-version: default
-            - run: npm run build
-            - run: npm run test:e2e
-            - store_test_results:
-                  path: e2e-results.xml
-            - store_artifacts:
-                  path: test-results
+
 workflows:
     test:
         jobs:
@@ -55,4 +21,13 @@ workflows:
                 run-command: 'test:e2e'
                 test-results-for: jest
                 cache-version: default
-            - Test-Static
+            - node/test:
+                name: 'test:types'
+                version: '18.3.0'
+                run-command: 'test:types'
+                cache-version: default
+            - node/test:
+                name: 'test:format'
+                version: '18.3.0'
+                run-command: 'test:format'
+                cache-version: default
