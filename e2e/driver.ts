@@ -14,9 +14,14 @@ export class TestEnvironment {
     constructor(private pathToCompose: string) {}
 
     init() {
-        this.envName = dockerComposeTool(beforeEach, afterEach, this.pathToCompose, {
-            shouldPullImages: false,
-        });
+        this.envName = dockerComposeTool(
+            (fn) => beforeEach(fn, 15_000),
+            (fn) => afterEach(fn, 15_000),
+            this.pathToCompose,
+            {
+                shouldPullImages: false,
+            }
+        );
     }
 
     async fetch(serviceName: string, port: number = 7001, path: string = '/') {
